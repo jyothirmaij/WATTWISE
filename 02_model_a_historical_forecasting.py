@@ -57,6 +57,7 @@ A_DAILY["daily_energy_kwh"] = (
     / A_DAILY["observed_intervals"].clip(lower=1)
 )
 
+
 # Verify date continuity before using row-based lag features.
 full_dates = pd.date_range(
     A_DAILY["date"].min(),
