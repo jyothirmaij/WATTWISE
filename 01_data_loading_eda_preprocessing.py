@@ -266,3 +266,6 @@ print("Model A missing values:", int(A.isna().sum().sum()))
 print("Model B missing values:", int(B.isna().sum().sum()))
 print("Model A duplicate rows:", int(A.duplicated().sum()))
 print("Model B duplicate rows:", int(B.duplicated().sum()))
+
+
+
