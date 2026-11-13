@@ -1,4 +1,4 @@
-"""
+"""  
 WattWise — Peak-hour analysis and energy recommendations
 
 Contribution 4 of 5: Historical pooled peak-hour analysis and rule-based energy-saving recommendation generation.
