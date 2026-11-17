@@ -1,0 +1,34 @@
+{
+  "project": "WattWise",
+  "model_A": {
+    "best_regressor": "LinearRegression",
+    "best_classifier": "LogisticRegression",
+    "overall_holdout_r2": 0.906160605409882,
+    "overall_holdout_mae": 0.12026764701049353,
+    "overall_holdout_rmse": 0.19743516572703393,
+    "next_day_metrics": {
+      "MAE": 0.11960016055973738,
+      "RMSE": 0.19800391216164456,
+      "R2": 0.9056191852137147
+    },
+    "target_definition": "Sampling-adjusted estimated average household daily consumption from pooled observations, not individual household consumption.",
+    "target_date_split_cutoff": "2026-04-18"
+  },
+  "model_B": {
+    "best_regressor": "XGBoost",
+    "best_classifier": "HistGradientBoostingClassifier",
+    "holdout_r2": 0.968746005327863,
+    "holdout_mae": 0.8294289847280477,
+    "holdout_rmse": 1.0513021636686997,
+    "data_note": "Metrics are from a synthetic household dataset and do not prove real-world generalisation."
+  },
+  "historical_pool_peak_hour": 20,
+  "tariff_note": "Illustrative energy-charge estimate only; not an official electricity bill.",
+  "software_versions": {
+    "scikit_learn": "1.6.1",
+    "lightgbm": "4.6.0",
+    "xgboost": "3.4.1",
+    "pandas": "2.2.3",
+    "numpy": "2.4.6"
+  }
+}
