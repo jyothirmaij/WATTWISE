@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Energy Forecast | WattWise{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <h1>Energy Consumption Forecast</h1>
+
+    <p>
+        Forecast estimated average household electricity consumption
+        using historical energy data and machine learning.
+    </p>
+
+    <div class="card">
+
+        <h2>⚡ Model A – Historical Forecasting</h2>
+
+        <p>
+            Select your forecasting horizon to estimate future
+            average daily electricity consumption.
+        </p>
+
+        <form method="POST" action="{{ url_for('forecast') }}">
+
+            <label for="days">Forecast Horizon</label>
+
+            <select name="days" id="days" required>
+
+                {% for day in range(1, 31) %}
+                    <option value="{{ day }}"
+                        {% if result and result.future_days == day %}selected{% endif %}>
+                        {{ day }} Day{% if day > 1 %}s{% endif %}
+                    </option>
+                {% endfor %}
+
+            </select>
+
+            <button type="submit" class="btn-primary">
+                Generate Forecast
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if error %}
+
+        <div class="card error-card">
+            <h2>Forecast Error</h2>
+            <p>{{ error }}</p>
+        </div>
+
+    {% endif %}
+
+
+    {% if result %}
+
+        <div class="card result-card">
+
+            <h2>📊 Forecast Results</h2>
+
+            <div class="result-grid">
+
+                <div class="result-item">
+                    <h3>Predicted Daily Consumption</h3>
+                    <p>{{ result.predicted_daily_kwh }} kWh</p>
+                </div>
+
+                <div class="result-item">
+                    <h3>Consumption Category</h3>
+                    <p>{{ result.consumption_level }}</p>
+                </div>
+
+                <div class="result-item">
+                    <h3>Estimated 30-Day Consumption</h3>
+                    <p>{{ result.estimated_30_day_kwh }} kWh</p>
+                </div>
+
+                <div class="result-item">
+                    <h3>Illustrative 30-Day Charge</h3>
+                    <p>₹{{ result.estimated_30_day_charge }}</p>
+                </div>
+
+            </div>
+
+            <p class="forecast-date">
+                Forecast target date: {{ result.future_date }}
+            </p>
+
+            <p>
+                Historical peak consumption hour:
+                {{ result.historical_peak_hour }}:00
+            </p>
+
+            <p class="disclaimer">
+                {{ result.bill_note }}
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <div class="card info-card">
+
+        <h2>About this Model</h2>
+
+        <p>
+            Model A uses historical electricity consumption patterns
+            and machine learning to estimate future average daily
+            household consumption.
+        </p>
+
+        <p>
+            The forecast represents a pooled historical average,
+            not an individual household prediction.
+        </p>
+
+        <p>
+            Historical dataset coverage:
+            1 January 2024 – 7 November 2026.
+        </p>
+
+        <p class="disclaimer">
+            Forecasts are based on the latest available historical
+            observations, not live electricity meter readings.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}
